@@ -1,0 +1,545 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Curbside Service",
+    "version": "1.0"
+  },
+  "host": "lt-services.chipotle.com",
+  "basePath": "/curbside/v1",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/curbside/order": {
+      "put": {
+        "description": "Create order in vendor system when user selects curbside pickup",
+        "operationId": "put-curbside-order",
+        "summary": "Create order in vendor system when user selects curbside pickup",
+        "tags": [
+          "Curbside"
+        ],
+        "parameters": [
+          {
+            "name": "Chipotle-CorrelationId",
+            "in": "header",
+            "description": "Available for consumers of the application. All logs stored will use this correlation id. If not passed, auto-generated.",
+            "type": "string"
+          },
+          {
+            "name": "createOrderRequest",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateOrderRequest"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ValidationExceptionResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\",\r\n  \"validationErrors\": [\r\n    {\r\n      \"message\": \"string\",\r\n      \"name\": \"string\",\r\n      \"errorCode\": \"string\"\r\n    }\r\n  ]\r\n}",
+              "text/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\",\r\n  \"validationErrors\": [\r\n    {\r\n      \"message\": \"string\",\r\n      \"name\": \"string\",\r\n      \"errorCode\": \"string\"\r\n    }\r\n  ]\r\n}"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/BaseExceptionResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}",
+              "text/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}"
+            }
+          }
+        }
+      }
+    },
+    "/curbside/arrival": {
+      "put": {
+        "description": "Update vendor when customer arrives",
+        "operationId": "put-curbside-arrival",
+        "summary": "Update vendor when customer arrives",
+        "tags": [
+          "Curbside"
+        ],
+        "parameters": [
+          {
+            "name": "Chipotle-CorrelationId",
+            "in": "header",
+            "description": "Available for consumers of the application. All logs stored will use this correlation id. If not passed, auto-generated.",
+            "type": "string"
+          },
+          {
+            "name": "updateOrderRequest",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateOrderRequest"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ValidationExceptionResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\",\r\n  \"validationErrors\": [\r\n    {\r\n      \"message\": \"string\",\r\n      \"name\": \"string\",\r\n      \"errorCode\": \"string\"\r\n    }\r\n  ]\r\n}",
+              "text/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\",\r\n  \"validationErrors\": [\r\n    {\r\n      \"message\": \"string\",\r\n      \"name\": \"string\",\r\n      \"errorCode\": \"string\"\r\n    }\r\n  ]\r\n}"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/BaseExceptionResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}",
+              "text/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}"
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Oks this instance.",
+        "operationId": "get-health",
+        "summary": "Oks this instance.",
+        "tags": [
+          "Health"
+        ],
+        "parameters": [
+          {
+            "name": "Chipotle-CorrelationId",
+            "in": "header",
+            "description": "Available for consumers of the application. All logs stored will use this correlation id. If not passed, auto-generated.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/health/deep": {
+      "get": {
+        "description": "Deep health check for the service",
+        "operationId": "get-health-deep",
+        "summary": "Deep health check for the service",
+        "tags": [
+          "Health"
+        ],
+        "parameters": [
+          {
+            "name": "Chipotle-CorrelationId",
+            "in": "header",
+            "description": "Available for consumers of the application. All logs stored will use this correlation id. If not passed, auto-generated.",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HealthResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"status\": 0,\r\n  \"message\": \"string\",\r\n  \"version\": \"string\",\r\n  \"buildVersion\": \"string\",\r\n  \"lastSuccessTimestamp\": \"string\",\r\n  \"lastErrorTimestamp\": \"string\",\r\n  \"attributes\": {},\r\n  \"sources\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"status\": 0,\r\n      \"isStubbed\": true,\r\n      \"lastSuccessTimestamp\": \"string\",\r\n      \"lastErrorTimestamp\": \"string\"\r\n    }\r\n  ],\r\n  \"errors\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"type\": 0,\r\n      \"message\": \"string\",\r\n      \"timestamp\": \"string\"\r\n    }\r\n  ]\r\n}",
+              "text/json": "{\r\n  \"status\": 0,\r\n  \"message\": \"string\",\r\n  \"version\": \"string\",\r\n  \"buildVersion\": \"string\",\r\n  \"lastSuccessTimestamp\": \"string\",\r\n  \"lastErrorTimestamp\": \"string\",\r\n  \"attributes\": {},\r\n  \"sources\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"status\": 0,\r\n      \"isStubbed\": true,\r\n      \"lastSuccessTimestamp\": \"string\",\r\n      \"lastErrorTimestamp\": \"string\"\r\n    }\r\n  ],\r\n  \"errors\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"type\": 0,\r\n      \"message\": \"string\",\r\n      \"timestamp\": \"string\"\r\n    }\r\n  ]\r\n}"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/HealthResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"status\": 0,\r\n  \"message\": \"string\",\r\n  \"version\": \"string\",\r\n  \"buildVersion\": \"string\",\r\n  \"lastSuccessTimestamp\": \"string\",\r\n  \"lastErrorTimestamp\": \"string\",\r\n  \"attributes\": {},\r\n  \"sources\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"status\": 0,\r\n      \"isStubbed\": true,\r\n      \"lastSuccessTimestamp\": \"string\",\r\n      \"lastErrorTimestamp\": \"string\"\r\n    }\r\n  ],\r\n  \"errors\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"type\": 0,\r\n      \"message\": \"string\",\r\n      \"timestamp\": \"string\"\r\n    }\r\n  ]\r\n}",
+              "text/json": "{\r\n  \"status\": 0,\r\n  \"message\": \"string\",\r\n  \"version\": \"string\",\r\n  \"buildVersion\": \"string\",\r\n  \"lastSuccessTimestamp\": \"string\",\r\n  \"lastErrorTimestamp\": \"string\",\r\n  \"attributes\": {},\r\n  \"sources\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"status\": 0,\r\n      \"isStubbed\": true,\r\n      \"lastSuccessTimestamp\": \"string\",\r\n      \"lastErrorTimestamp\": \"string\"\r\n    }\r\n  ],\r\n  \"errors\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"type\": 0,\r\n      \"message\": \"string\",\r\n      \"timestamp\": \"string\"\r\n    }\r\n  ]\r\n}"
+            }
+          },
+          "503": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/HealthResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"status\": 0,\r\n  \"message\": \"string\",\r\n  \"version\": \"string\",\r\n  \"buildVersion\": \"string\",\r\n  \"lastSuccessTimestamp\": \"string\",\r\n  \"lastErrorTimestamp\": \"string\",\r\n  \"attributes\": {},\r\n  \"sources\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"status\": 0,\r\n      \"isStubbed\": true,\r\n      \"lastSuccessTimestamp\": \"string\",\r\n      \"lastErrorTimestamp\": \"string\"\r\n    }\r\n  ],\r\n  \"errors\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"type\": 0,\r\n      \"message\": \"string\",\r\n      \"timestamp\": \"string\"\r\n    }\r\n  ]\r\n}",
+              "text/json": "{\r\n  \"status\": 0,\r\n  \"message\": \"string\",\r\n  \"version\": \"string\",\r\n  \"buildVersion\": \"string\",\r\n  \"lastSuccessTimestamp\": \"string\",\r\n  \"lastErrorTimestamp\": \"string\",\r\n  \"attributes\": {},\r\n  \"sources\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"status\": 0,\r\n      \"isStubbed\": true,\r\n      \"lastSuccessTimestamp\": \"string\",\r\n      \"lastErrorTimestamp\": \"string\"\r\n    }\r\n  ],\r\n  \"errors\": [\r\n    {\r\n      \"source\": \"string\",\r\n      \"type\": 0,\r\n      \"message\": \"string\",\r\n      \"timestamp\": \"string\"\r\n    }\r\n  ]\r\n}"
+            }
+          }
+        }
+      }
+    },
+    "/curbside/arrival/{orderId}": {
+      "get": {
+        "description": "Get vehicle/parking details by order id",
+        "operationId": "get-curbside-arrival-orderid",
+        "summary": "Get vehicle/parking details by order id",
+        "tags": [
+          "Curbside"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Chipotle-CorrelationId",
+            "in": "header",
+            "description": "Available for consumers of the application. All logs stored will use this correlation id. If not passed, auto-generated.",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ArrivalDetailsResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"parkingSpot\": \"string\",\r\n  \"vehicleInfo\": {\r\n    \"color\": \"string\",\r\n    \"make\": \"string\",\r\n    \"model\": \"string\"\r\n  }\r\n}",
+              "text/json": "{\r\n  \"parkingSpot\": \"string\",\r\n  \"vehicleInfo\": {\r\n    \"color\": \"string\",\r\n    \"make\": \"string\",\r\n    \"model\": \"string\"\r\n  }\r\n}"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/BaseExceptionResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}",
+              "text/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/BaseExceptionResponse"
+            },
+            "examples": {
+              "application/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}",
+              "text/json": "{\r\n  \"message\": \"string\",\r\n  \"category\": \"string\",\r\n  \"errorCode\": \"string\",\r\n  \"statusCode\": 0,\r\n  \"correlationId\": \"string\"\r\n}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "restaurantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "customerPhone": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "shortCode": {
+          "type": "string"
+        },
+        "pickupDateTimeUtc": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "example": "{\r\n  \"restaurantId\": 0,\r\n  \"customerName\": \"string\",\r\n  \"customerPhone\": \"string\",\r\n  \"orderId\": \"string\",\r\n  \"shortCode\": \"string\",\r\n  \"pickupDateTimeUtc\": \"string\"\r\n}"
+    },
+    "ValidationError": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidationExceptionResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "statusCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "correlationId": {
+          "type": "string"
+        },
+        "validationErrors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ValidationError"
+          }
+        }
+      }
+    },
+    "BaseExceptionResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "statusCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "correlationId": {
+          "type": "string"
+        }
+      }
+    },
+    "VehicleInfo": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "make": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "restaurantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "parkingSpot": {
+          "type": "string"
+        },
+        "vehicleInfo": {
+          "$ref": "#/definitions/VehicleInfo"
+        },
+        "arrivalTimeUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "customerState": {
+          "type": "string"
+        }
+      },
+      "example": "{\r\n  \"orderId\": \"string\",\r\n  \"restaurantId\": 0,\r\n  \"parkingSpot\": \"string\",\r\n  \"vehicleInfo\": {\r\n    \"color\": \"string\",\r\n    \"make\": \"string\",\r\n    \"model\": \"string\"\r\n  },\r\n  \"arrivalTimeUtc\": \"string\",\r\n  \"customerState\": \"string\"\r\n}"
+    },
+    "ArrivalDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "parkingSpot": {
+          "type": "string"
+        },
+        "vehicleInfo": {
+          "$ref": "#/definitions/VehicleInfo"
+        }
+      }
+    },
+    "HealthStatus": {
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "type": "integer"
+    },
+    "HealthSourceStatus": {
+      "format": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "type": "integer"
+    },
+    "HealthSource": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/HealthSourceStatus"
+        },
+        "isStubbed": {
+          "type": "boolean"
+        },
+        "lastSuccessTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lastErrorTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "HealthIssueType": {
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "integer"
+    },
+    "HealthError": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/HealthIssueType"
+        },
+        "message": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "HealthResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/HealthStatus"
+        },
+        "message": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "buildVersion": {
+          "type": "string"
+        },
+        "lastSuccessTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lastErrorTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HealthSource"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HealthError"
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}
